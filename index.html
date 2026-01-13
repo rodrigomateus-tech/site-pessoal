@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RM TECH SOLUTIONS | Soluções em Tecnologia, Automação e IA</title>
+    <!-- Carrega Tailwind CSS para estilização -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carrega Lucide Icons para ícones minimalistas -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- ********************************************************** -->
+    <!-- 1. ÍCONE DA ABA DO NAVEGADOR (FAVICON) -->
+    <!-- SUBSTITUA a URL do 'href' pelo caminho/URL do seu ícone real (32x32px é comum) -->
+    <link rel="icon" type="image/png" href="https://i.imgur.com/4IEh9wH.png"> 
+    <!-- ********************************************************** -->
+
+    <!-- ********************************************************** -->
+    <!-- 2. META TAGS OPEN GRAPH (PREVIEW DE LINK PARA REDES SOCIAIS) -->
+    <!-- Estas tags definem como o link será exibido ao ser compartilhado (WhatsApp, Facebook, etc.) -->
+    <meta property="og:title" content="RM TECH SOLUTIONS | Tecnologia e IA">
+    <meta property="og:description" content="Atendimento personalizado em Automação Residencial, Suporte de TI e Consultoria em IA.">
+    <!-- SUBSTITUA a URL abaixo pela URL da sua IMAGEM DE PREVIEW (Recomendado: 1200x630px) -->
+    <meta property="og:image" content="https://placehold.co/1200x630/6366f1/ffffff?text=RM+TECH+PREVIEW">
+    <meta property="og:url" content="https://i.imgur.com/4IEh9wH.png">
+    <meta property="og:type" content="website">
+    <!-- ********************************************************** -->
+
+    <!-- Configuração do Tailwind e Fonte Inter -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        :root {
+            --color-primary: #6366f1; /* Indigo 500 */
+            --color-secondary: #ec4899; /* Pink 500 */
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F172A; /* Slate 900 - Fundo escuro */
+            color: #E2E8F0; /* Slate 200 - Texto claro */
+        }
+
+        /* Efeito de brilho sutil para cards */
+        .card-glow {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-glow:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3), 0 0 30px rgba(99, 102, 241, 0.3) inset;
+            border-color: var(--color-primary);
+        }
+
+        /* Acordeão FAQ */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+        }
+        .accordion-content.active {
+            max-height: 500px;
+            padding-top: 0.75rem; 
+            padding-bottom: 0.75rem; 
+        }
+        .accordion-content p {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* Estilo para barra de navegação flutuante */
+        .nav-sticky {
+            backdrop-filter: blur(10px);
+            background-color: rgba(15, 23, 42, 0.95); /* Slate 900 semi-transparente */
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Efeito de texto com degradê */
+        .gradient-text {
+            background-image: linear-gradient(to right, #8b5cf6, #3b82f6); /* Roxo para Azul */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navbar -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+            <!-- ********************************************************** -->
+            <!-- 3. LOGOTIPO NA NAVBAR (Use Imagem do seu Logo) -->
+            <a href="#hero" class="text-xl sm:text-2xl font-extrabold flex items-center">
+                 <!-- SUBSTITUA esta tag <img> pelo seu logo oficial (32x32px é o tamanho sugerido) -->
+                 <img src="https://i.imgur.com/4IEh9wH.png" alt="RM Logo" class="w-8 h-8 rounded-full mr-2">
+                 <span class="gradient-text">RM TECH SOLUTIONS</span>
+            </a>
+            <!-- ********************************************************** -->
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#servicos" class="hover:text-indigo-400 transition">Serviços</a>
+                <a href="#pacotes" class="hover:text-indigo-400 transition">Pacotes</a>
+                <a href="#diferenciais" class="hover:text-indigo-400 transition">Diferenciais</a>
+                <a href="#sobre" class="hover:text-indigo-400 transition">Sobre</a>
+                <a href="#faq" class="hover:text-indigo-400 transition">FAQ</a>
+            </div>
+            <a href="https://wa.me/5521969376246" target="_blank" class="hidden md:block bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-lg shadow-indigo-600/30">
+                Falar no WhatsApp
+            </a>
+            <!-- Menu hamburguer para mobile -->
+            <button id="mobile-menu-button" class="md:hidden text-white" aria-label="Abrir Menu">
+                 <i data-lucide="menu" class="w-7 h-7"></i>
+            </button>
+        </nav>
+        <!-- Menu Mobile (oculto por padrão) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900/95 py-3 border-t border-slate-700">
+            <div class="flex flex-col space-y-3 px-4 text-center text-sm font-medium">
+                <a href="#servicos" class="py-1 hover:text-indigo-400 transition">Serviços</a>
+                <a href="#pacotes" class="py-1 hover:text-indigo-400 transition">Pacotes</a>
+                <a href="#diferenciais" class="py-1 hover:text-indigo-400 transition">Diferenciais</a>
+                <a href="#sobre" class="py-1 hover:text-indigo-400 transition">Sobre</a>
+                <a href="#faq" class="py-1 hover:text-indigo-400 transition">FAQ</a>
+                <a href="https://wa.me/5521969376246" target="_blank" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-lg shadow-indigo-600/30 mt-2">
+                    Falar no WhatsApp
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. Hero Section -->
+    <section id="hero" class="pt-32 pb-16 md:pt-40 md:pb-24 text-center relative overflow-hidden bg-slate-900">
+        <!-- Efeito de fundo sutil (círculos/grid) -->
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#4f46e5_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        
+        <div class="container mx-auto px-4 sm:px-6 relative z-10">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight">
+                <span class="gradient-text">Soluções em Tecnologia, Automação</span> e Inteligência Artificial
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-400 mb-8 max-w-3xl mx-auto">
+                Atendimento personalizado para transformar sua casa ou negócio com a tecnologia mais eficiente e segura do mercado.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="https://wa.me/5521969376246" target="_blank" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-8 rounded-xl transition duration-300 shadow-xl shadow-indigo-600/50 flex items-center justify-center">
+                    <i data-lucide="message-square-text" class="w-5 h-5 mr-2"></i> Falar no WhatsApp
+                </a>
+                <a href="https://www.instagram.com/rmtechsolutionss/" target="_blank" class="w-full sm:w-auto bg-slate-700 hover:bg-slate-600 text-slate-200 font-bold py-3 px-8 rounded-xl transition duration-300 border border-slate-600 flex items-center justify-center">
+                    <i data-lucide="instagram" class="w-5 h-5 mr-2"></i> Ver Instagram (Portfólio)
+                </a>
+            </div>
+            
+            <!-- Local de Atendimento -->
+            <div class="mt-8 text-sm text-slate-500">
+                <p>Atendimento remoto em todo o Brasil | Presencial no RJ, Baixada Fluminense e Niterói.</p>
+            </div>
+
+            <!-- ********************************************************** -->
+            <!-- 4. DEMONSTRAÇÃO EM GIF (Em loop, substituindo o vídeo) -->
+            <div class="mt-12 max-w-xl mx-auto">
+                <h3 class="text-xl font-semibold mb-3 text-indigo-400">
+                    Automação que você vê, sente e entende.
+                </h3>
+
+                <div class="w-full h-auto rounded-xl overflow-hidden shadow-2xl border border-indigo-500/50">
+                    <!-- 
+                        INSTRUÇÃO CRÍTICA PARA O GIF:
+                        1. Hospede seu GIF online (ex: Imgur, Giphy ou seu servidor).
+                        2. SUBSTITUA a URL abaixo (placeholder) pelo link DIRETO do seu arquivo .gif (termina em .gif).
+                        3. GIFs são naturalmente em loop, então não é necessário código extra para isso.
+                        
+                        SUBSTITUA A URL DE EXEMPLO ABAIXO:
+                    -->
+                    <img src="https://i.imgur.com/QNhKqdr.gif" 
+                         alt="Demonstração da Automação em Ação"
+                         class="w-full h-auto max-h-96 object-cover">
+                </div>
+
+                <p class="text-xs text-slate-500 mt-2">
+                    Demonstração do uso de IA, TI e Automação juntos.
+                </p>
+            </div>
+            <!-- ********************************************************** -->
+
+        </div>
+    </section>
+
+    <!-- Mini Seção: Como Funciona o Atendimento -->
+    <section id="atendimento" class="py-12 bg-slate-800 border-b border-slate-700">
+        <div class="container mx-auto px-4 sm:px-6 text-center">
+            <h2 class="text-2xl font-bold mb-6 gradient-text">Como funciona o nosso processo?</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="p-4 bg-slate-900 rounded-xl border border-slate-700">
+                    <i data-lucide="target" class="w-6 h-6 mx-auto mb-2 text-indigo-400"></i>
+                    <h3 class="font-semibold text-base mb-1">Diagnóstico</h3>
+                    <p class="text-slate-400 text-xs">Entendimento da sua necessidade (casa ou negócio).</p>
+                </div>
+                <div class="p-4 bg-slate-900 rounded-xl border border-slate-700">
+                    <i data-lucide="file-text" class="w-6 h-6 mx-auto mb-2 text-indigo-400"></i>
+                    <h3 class="font-semibold text-base mb-1">Proposta</h3>
+                    <p class="text-slate-400 text-xs">Solução personalizada e orçamento sem compromisso.</p>
+                </div>
+                <div class="p-4 bg-slate-900 rounded-xl border border-slate-700">
+                    <i data-lucide="zap" class="w-6 h-6 mx-auto mb-2 text-indigo-400"></i>
+                    <h3 class="font-semibold text-base mb-1">Execução</h3>
+                    <p class="text-slate-400 text-xs">Implementação ágil e suporte pós-serviço garantido.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Seção de Serviços -->
+    <section id="servicos" class="py-16 bg-slate-900">
+        <div class="container mx-auto px-4 sm:px-6">
+            <h2 class="text-4xl font-bold text-center mb-4">Nossos <span class="gradient-text">serviços</span></h2>
+            <p class="text-center text-slate-400 mb-10 max-w-2xl mx-auto">Tecnologia aplicada para residências e empresas, com foco em eficiência, segurança e inovação.</p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card Automação Residencial (Ícone lightbulb-off) -->
+                <div class="p-5 bg-slate-800 rounded-xl border border-slate-700 card-glow">
+                    <i data-lucide="lightbulb-off" class="w-7 h-7 mb-3 text-indigo-400"></i>
+                    <h3 class="font-bold text-xl mb-2">Automação Residencial</h3>
+                    <ul class="list-disc list-inside space-y-1 text-slate-400 text-sm">
+                        <li>Instalação de dispositivos inteligentes.</li>
+                        <li>Integração com Alexa e Google Assistente.</li>
+                        <li>Consultoria e planejamento de ambientes.</li>
+                    </ul>
+                </div>
+
+                <!-- Card Suporte e TI -->
+                <div class="p-5 bg-slate-800 rounded-xl border border-slate-700 card-glow">
+                    <i data-lucide="shield-check" class="w-7 h-7 mb-3 text-indigo-400"></i>
+                    <h3 class="font-bold text-xl mb-2">Suporte e Consultoria de TI</h3>
+                    <ul class="list-disc list-inside space-y-1 text-slate-400 text-sm">
+                        <li>Suporte técnico remoto e presencial (RJ).</li>
+                        <li>Consultoria estratégica de TI para negócios.</li>
+                        <li>Manutenção e otimização de redes e sistemas.</li>
+                    </ul>
+                </div>
+
+                <!-- Card Formatação e Manutenção -->
+                <div class="p-5 bg-slate-800 rounded-xl border border-slate-700 card-glow">
+                    <i data-lucide="hard-drive" class="w-7 h-7 mb-3 text-indigo-400"></i>
+                    <h3 class="font-bold text-xl mb-2">Formatação e Manutenção</h3>
+                    <ul class="list-disc list-inside space-y-1 text-slate-400 text-sm">
+                        <li>Formatação básica e completa de computadores.</li>
+                        <li>Instalação de programas, drivers e sistemas.</li>
+                        <li>Backup seguro e restauração de dados importantes.</li>
+                    </ul>
+                </div>
+                
+                <!-- Card Inteligência Artificial -->
+                <div class="p-5 bg-slate-800 rounded-xl border border-slate-700 card-glow">
+                    <i data-lucide="brain-circuit" class="w-7 h-7 mb-3 text-indigo-400"></i>
+                    <h3 class="font-bold text-xl mb-2">Inteligência Artificial</h3>
+                    <ul class="list-disc list-inside space-y-1 text-slate-400 text-sm">
+                        <li>Consultoria para implementação de IA.</li>
+                        <li>Automação de tarefas rotineiras e repetitivas.</li>
+                        <li>IA aplicada à produtividade e otimização.</li>
+                    </ul>
+                </div>
+
+                <!-- Card Design e Identidade Visual -->
+                <div class="p-5 bg-slate-800 rounded-xl border border-slate-700 card-glow">
+                    <i data-lucide="palette" class="w-7 h-7 mb-3 text-indigo-400"></i>
+                    <h3 class="font-bold text-xl mb-2">Design e Identidade Visual</h3>
+                    <ul class="list-disc list-inside space-y-1 text-slate-400 text-sm">
+                        <li>Criação de logos, flyers e rebranding.</li>
+                        <li>Desenvolvimento de materiais digitais.</li>
+                        <li>Definição de identidade visual completa.</li>
+                    </ul>
+                </div>
+
+                <!-- Card Segurança Cibernética (Adicional) -->
+                <div class="p-5 bg-slate-800 rounded-xl border border-slate-700 card-glow">
+                    <i data-lucide="lock" class="w-7 h-7 mb-3 text-indigo-400"></i>
+                    <h3 class="font-bold text-xl mb-2">Segurança Cibernética</h3>
+                    <ul class="list-disc list-inside space-y-1 text-slate-400 text-sm">
+                        <li>Instalação e configuração de antivírus.</li>
+                        <li>Auditoria de segurança em redes.</li>
+                        <li>Proteção e prevenção contra ataques digitais.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Seção Pacotes de Serviços (Lista completa e compacta) -->
+    <section id="pacotes" class="py-16 bg-slate-800">
+        <div class="container mx-auto px-4 sm:px-6">
+            <h2 class="text-4xl font-bold text-center mb-4">Escolha o seu <span class="gradient-text">pacote ideal</span></h2>
+            <p class="text-center text-slate-400 mb-10 max-w-2xl mx-auto">Soluções pré-configuradas para começar a transformar agora. Foco em custo-benefício e organização.</p>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Pacote 1: Formatação Básica -->
+                <div class="p-4 bg-slate-900 rounded-xl border border-slate-700 flex flex-col justify-between h-full card-glow">
+                    <div>
+                        <span class="text-xs font-semibold text-indigo-400 uppercase">TI Essencial</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2">Formatação Básica</h3>
+                        <p class="text-slate-400 text-xs">SO + Drivers e Otimização leve.</p>
+                    </div>
+                    <a href="https://wa.me/5521969376246?text=Ol%C3%A1%21+Tenho+interesse+na+Formata%C3%A7%C3%A3o+B%C3%A1sica.+Gostaria+de+mais+informa%C3%A7%C3%B5es" target="_blank" class="mt-4 w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 rounded-lg text-sm transition text-center">
+                        Ver detalhes
+                    </a>
+                </div>
+                
+                <!-- Pacote 2: Formatação Completa -->
+                <div class="p-4 bg-slate-900 rounded-xl border border-slate-700 flex flex-col justify-between h-full card-glow">
+                    <div>
+                        <span class="text-xs font-semibold text-indigo-400 uppercase">TI Plus</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2">Formatação Completa</h3>
+                        <p class="text-slate-400 text-xs">Inclui Backup, Instalação de Softwares e Configurações iniciais.</p>
+                    </div>
+                    <a href="https://wa.me/5521969376246?text=Ol%C3%A1%21+Gostaria+de+contratar+o+servi%C3%A7o+de+Formata%C3%A7%C3%A3o+Completa.+Pode+me+informar+os+detalhes%3F" target="_blank" class="mt-4 w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 rounded-lg text-sm transition text-center">
+                        Ver detalhes
+                    </a>
+                </div>
+
+                <!-- Pacote 3: Automação Start (Destaque) -->
+                <div class="p-4 bg-slate-900 rounded-xl border border-slate-700 flex flex-col justify-between h-full card-glow">
+                    <div>
+                        <span class="text-xs font-semibold text-indigo-400 uppercase">Casa Inteligente</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2">Automação Start</h3>
+                        <p class="text-slate-400 text-xs">Controle de Iluminação e Assistente de Voz em uma zona.</p>
+                    </div>
+                    <a href="https://wa.me/5521969376246?text=Ol%C3%A1%21+Tenho+interesse+no+plano+Automação+Start.+Pode+me+explicar+como+funciona%3F" target="_blank" class="mt-4 w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 rounded-lg text-sm transition text-center">
+                        Ver detalhes
+                    </a>
+                </div>
+                
+                <!-- Pacote 4: Automação Premium -->
+                <div class="p-4 bg-slate-900 rounded-xl border border-slate-700 flex flex-col justify-between h-full card-glow">
+                    <div>
+                        <span class="text-xs font-semibold text-indigo-400 uppercase">Casa Completa</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2">Automação Premium</h3>
+                        <p class="text-slate-400 text-xs">Solução completa (iluminação, segurança, áudio/vídeo) em múltiplas zonas.</p>
+                    </div>
+                    <a href="https://wa.me/5521969376246?text=Ol%C3%A1%21+Tenho+interesse+na+Automação+Premium+para+minha+casa+ou+empresa.+Gostaria+de+mais+detalhes" target="_blank" class="mt-4 w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 rounded-lg text-sm transition text-center">
+                        Ver detalhes
+                    </a>
+                </div>
+                
+                <!-- Pacote 5: Consultoria em IA -->
+                <div class="p-4 bg-slate-900 rounded-xl border border-slate-700 flex flex-col justify-between h-full card-glow">
+                    <div>
+                        <span class="text-xs font-semibold text-indigo-400 uppercase">Inovação</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2">Consultoria em IA</h3>
+                        <p class="text-slate-400 text-xs">Sessão estratégica para implementação de IAs que aumentam a produtividade.</p>
+                    </div>
+                    <a href="https://wa.me/5521969376246?text=Ol%C3%A1%21+Tenho+interesse+em+Consultoria+em+Intelig%C3%AAncia+Artificial+para+meu+neg%C3%B3cio.+Podemos+conversar%3F" target="_blank" class="mt-4 w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 rounded-lg text-sm transition text-center">
+                        Ver detalhes
+                    </a>
+                </div>
+                
+                <!-- Pacote 6: Identidade Visual Básica -->
+                <div class="p-4 bg-slate-900 rounded-xl border border-slate-700 flex flex-col justify-between h-full card-glow">
+                    <div>
+                        <span class="text-xs font-semibold text-indigo-400 uppercase">Branding Start</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2">Identidade Visual Básica</h3>
+                        <p class="text-slate-400 text-xs">Criação de Logo e Cartão Digital.</p>
+                    </div>
+                    <a href="https://wa.me/5521969376246?text=Ol%C3%A1%21+Gostaria+de+contratar+o+servi%C3%A7o+de+Identidade+Visual+B%C3%A1sica.+Pode+me+passar+as+informa%C3%A7%C3%B5es%3F" target="_blank" class="mt-4 w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 rounded-lg text-sm transition text-center">
+                        Ver detalhes
+                    </a>
+                </div>
+                
+                <!-- Pacote 7: Identidade Visual Profissional -->
+                <div class="p-4 bg-slate-900 rounded-xl border border-slate-700 flex flex-col justify-between h-full card-glow">
+                    <div>
+                        <span class="text-xs font-semibold text-indigo-400 uppercase">Branding Pro</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2">Identidade Visual Profissional</h3>
+                        <p class="text-slate-400 text-xs">Logo, paleta, tipografia, manual de marca e arquivos editáveis.</p>
+                    </div>
+                    <a href="https://wa.me/5521969376246?text=Ol%C3%A1%21+Tenho+interesse+no+servi%C3%A7o+de+Identidade+Visual+Profissional.+Pode+me+explicar+os+planos%3F" target="_blank" class="mt-4 w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 rounded-lg text-sm transition text-center">
+                        Ver detalhes
+                    </a>
+                </div>
+                
+                <!-- Pacote 8: Consultoria de TI -->
+                <div class="p-4 bg-slate-900 rounded-xl border border-slate-700 flex flex-col justify-between h-full card-glow">
+                    <div>
+                        <span class="text-xs font-semibold text-indigo-400 uppercase">Estratégia</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2">Consultoria de TI</h3>
+                        <p class="text-slate-400 text-xs">Sessão para planejamento estratégico de TI e infraestrutura de rede.</p>
+                    </div>
+                    <a href="https://wa.me/5521969376246?text=Ol%C3%A1%21+Tenho+interesse+em+Consultoria+de+TI+e+gostaria+de+entender+como+funciona+o+servi%C3%A7o" target="_blank" class="mt-4 w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 rounded-lg text-sm transition text-center">
+                        Ver detalhes
+                    </a>
+                </div>
+                
+                <!-- Pacote 9: Suporte Essencial -->
+                <div class="p-4 bg-slate-900 rounded-xl border border-slate-700 flex flex-col justify-between h-full card-glow">
+                    <div>
+                        <span class="text-xs font-semibold text-indigo-400 uppercase">Empresarial Start</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2">Suporte Essencial</h3>
+                        <p class="text-slate-400 text-xs">Pacote de horas mensais de suporte remoto para pequenas necessidades.</p>
+                    </div>
+                    <a href="https://wa.me/5521969376246?text=Ol%C3%A1%21+Tenho+interesse+no+servi%C3%A7o+de+Suporte+Essencial.+Pode+me+passar+os+detalhes%3F" target="_blank" class="mt-4 w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 rounded-lg text-sm transition text-center">
+                        Ver detalhes
+                    </a>
+                </div>
+                
+                <!-- Pacote 10: Suporte Profissional -->
+                <div class="p-4 bg-slate-900 rounded-xl border border-slate-700 flex flex-col justify-between h-full card-glow">
+                    <div>
+                        <span class="text-xs font-semibold text-indigo-400 uppercase">Empresarial Pro</span>
+                        <h3 class="font-bold text-lg mt-1 mb-2">Suporte Profissional</h3>
+                        <p class="text-slate-400 text-xs">Suporte contínuo, auditoria de segurança e otimização trimestral para empresas.</p>
+                    </div>
+                    <a href="https://wa.me/5521969376246?text=Ol%C3%A1%21+Tenho+interesse+no+servi%C3%A7o+de+Suporte+Profissional.+Gostaria+de+mais+informa%C3%A7%C3%B5es" target="_blank" class="mt-4 w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 rounded-lg text-sm transition text-center">
+                        Ver detalhes
+                    </a>
+                </div>
+            </div>
+            
+            <p class="text-center text-sm text-slate-500 mt-6">Precisa de algo diferente? Fale conosco para uma solução 100% sob medida.</p>
+
+        </div>
+    </section>
+
+    <!-- 4. Seção Diferenciais -->
+    <section id="diferenciais" class="py-16 bg-slate-900">
+        <div class="container mx-auto px-4 sm:px-6">
+            <h2 class="text-4xl font-bold text-center mb-10">Por que escolher a <span class="gradient-text">RM TECH SOLUTIONS?</span></h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+                <!-- Diferencial 1 -->
+                <div class="p-5 bg-slate-800 rounded-xl border border-slate-700 card-glow flex flex-col justify-between h-full lg:col-span-1">
+                    <i data-lucide="user-check" class="w-7 h-7 text-indigo-400 mb-3"></i>
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">Atendimento Direto</h3>
+                        <p class="text-slate-400 text-sm">Fale diretamente com o especialista, sem intermediários.</p>
+                    </div>
+                </div>
+
+                <!-- Diferencial 2 -->
+                <div class="p-5 bg-slate-800 rounded-xl border border-slate-700 card-glow flex flex-col justify-between h-full lg:col-span-1">
+                    <i data-lucide="layout-grid" class="w-7 h-7 text-indigo-400 mb-3"></i>
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">Personalização</h3>
+                        <p class="text-slate-400 text-sm">Criamos a solução ideal e única para seu problema ou projeto.</p>
+                    </div>
+                </div>
+
+                <!-- Diferencial 3 -->
+                <div class="p-5 bg-slate-800 rounded-xl border border-slate-700 card-glow flex flex-col justify-between h-full lg:col-span-1">
+                    <i data-lucide="globe" class="w-7 h-7 text-indigo-400 mb-3"></i>
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">Cobertura Nacional</h3>
+                        <p class="text-slate-400 text-sm">Atendimento remoto para todo o Brasil | Presencial estratégico no RJ.</p>
+                    </div>
+                </div>
+
+                <!-- Diferencial 4 -->
+                <div class="p-5 bg-slate-800 rounded-xl border border-slate-700 card-glow flex flex-col justify-between h-full lg:col-span-1">
+                    <i data-lucide="trending-up" class="w-7 h-7 text-indigo-400 mb-3"></i>
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">Foco em Resultado</h3>
+                        <p class="text-slate-400 text-sm">Tecnologia aplicada para gerar produtividade, segurança e conforto real.</p>
+                    </div>
+                </div>
+                
+                <!-- Diferencial 5 -->
+                <div class="p-5 bg-slate-800 rounded-xl border border-slate-700 card-glow flex flex-col justify-between h-full lg:col-span-1">
+                    <i data-lucide="shield" class="w-7 h-7 text-indigo-400 mb-3"></i>
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">Segurança</h3>
+                        <p class="text-slate-400 text-sm">Priorizamos a segurança cibernética em todas as implementações.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Seção Sobre e 6. Certificações -->
+    <section id="sobre" class="py-16 bg-slate-800">
+        <div class="container mx-auto px-4 sm:px-6">
+            <h2 class="text-4xl font-bold text-center mb-8"><span class="gradient-text">Equipe</span> por trás da RM TECH</h2>
+            
+            <div class="flex flex-col lg:flex-row items-center lg:space-x-10 mt-10">
+                <!-- Foto/Placeholder do Especialista (Rodrigo) -->
+                <div class="lg:w-1/3 mb-8 lg:mb-0 text-center flex-shrink-0">
+                    <!-- ********************************************************** -->
+                    <!-- 5. IMAGEM DO INTEGRANTE 1 (Rodrigo Mateus) -->
+                    <!-- SUBSTITUA esta URL pela imagem do seu especialista (Rodrigo) -->
+                    <img src="https://i.imgur.com/aWwqpH9.png" alt="Foto de Rodrigo Mateus" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-indigo-500 shadow-xl shadow-indigo-500/30">
+                    <!-- ********************************************************** -->
+
+                    <p class="text-xl font-bold mt-3">Rodrigo Mateus</p>
+                    <p class="text-sm text-slate-400">Fundador e Especialista em Tecnologia</p>
+                </div>
+
+                <!-- Texto Sobre e Certificações (Rodrigo) -->
+                <div class="lg:w-2/3">
+                    <p class="text-md text-slate-300 leading-relaxed">
+                        Rodrigo Mateus é um profissional apaixonado por tecnologia, com sólida formação e expertise em:
+                    </p>
+                    <ul class="mt-3 grid grid-cols-2 gap-3 text-sm text-slate-400">
+                        <li class="flex items-center"><i data-lucide="shield-half" class="w-4 h-4 mr-2 text-indigo-400"></i> Segurança Cibernética</li>
+                        <li class="flex items-center"><i data-lucide="cpu" class="w-4 h-4 mr-2 text-indigo-400"></i> Inteligência Artificial</li>
+                        <li class="flex items-center"><i data-lucide="cloud" class="w-4 h-4 mr-2 text-indigo-400"></i> Cloud Computing</li>
+                        <li class="flex items-center"><i data-lucide="bar-chart-3" class="w-4 h-4 mr-2 text-indigo-400"></i> Análise de Dados</li>
+                    </ul>
+                    <p class="text-md text-slate-300 leading-relaxed mt-4">
+                        Atua criando soluções eficientes e seguras, transformando o modo como residências e empresas utilizam a tecnologia no dia a dia.
+                    </p>
+
+                    <!-- Certificações (Rodrigo) -->
+                    <div class="mt-6">
+                        <h3 class="text-xl font-bold mb-3 gradient-text">Certificações Profissionais</h3>
+                        <div class="flex flex-wrap gap-3 text-xs">
+                            <span class="bg-slate-700 text-slate-200 px-3 py-1.5 rounded-full border border-slate-600">
+Google Data Analytics (PT)</span>
+                            <span class="bg-slate-700 text-slate-200 px-3 py-1.5 rounded-full border border-slate-600">
+Inteligência Artificial e Computacional</span>
+                            <span class="bg-slate-700 text-slate-200 px-3 py-1.5 rounded-full border border-slate-600">
+Marketing em Plataformas de Social Media</span>
+                            <span class="bg-slate-700 text-slate-200 px-3 py-1.5 rounded-full border border-slate-600">
+Big Data & Analyctis</span>
+                            <span class="bg-slate-700 text-slate-200 px-3 py-1.5 rounded-full border border-slate-600">
+Cloud Fundamentals, Administration and Solution Architect</span>
+                            <span class="bg-slate-700 text-slate-200 px-3 py-1.5 rounded-full border border-slate-600">
+Cybersecurity</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Segunda Pessoa (Taynara) -->
+            <div class="flex flex-col lg:flex-row items-center lg:space-x-10 mt-10 pt-10 border-t border-slate-700">
+                <!-- Foto/Placeholder do Especialista -->
+                <div class="lg:w-1/3 mb-8 lg:mb-0 text-center flex-shrink-0">
+                    <!-- ********************************************************** -->
+                    <!-- 6. IMAGEM DO INTEGRANTE 2 (Taynara de Oliveira) -->
+                    <!-- SUBSTITUA esta URL pela imagem da sua cofundadora (Taynara) -->
+                    <img src="https://i.imgur.com/ywevdIr.jpeg" alt="Foto de Taynara de Oliveira" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-indigo-500 shadow-xl shadow-indigo-500/30">
+                    <!-- ********************************************************** -->
+
+                    <p class="text-xl font-bold mt-3">Taynara de Oliveira</p>
+                    <p class="text-sm text-slate-400">Cofundadora & Diretora de Marketing e Design</p>
+                </div>
+
+                <!-- Texto Sobre e Certificações -->
+                <div class="lg:w-2/3">
+                    <p class="text-md text-slate-300 leading-relaxed">
+                        Graduada em Marketing, Taynara desenvolve identidades visuais e estratégias de comunicação, com sólida formação e expertise em:
+                    </p>
+                    <ul class="mt-3 grid grid-cols-2 gap-3 text-sm text-slate-400">
+                        <li class="flex items-center"><i data-lucide="pen-tool" class="w-4 h-4 mr-2 text-indigo-400"></i> Design Gráfico</li>
+                        <li class="flex items-center"><i data-lucide="monitor" class="w-4 h-4 mr-2 text-indigo-400"></i> Designer Instrucional</li>
+                        <li class="flex items-center"><i data-lucide="megaphone" class="w-4 h-4 mr-2 text-indigo-400"></i> Marketing Digital</li>
+                        <li class="flex items-center"><i data-lucide="clipboard-list" class="w-4 h-4 mr-2 text-indigo-400"></i> Gestão de Projetos</li>
+                    </ul>
+                    <p class="text-md text-slate-300 leading-relaxed mt-4">
+                        Responsável pela organização estratégica e atendimento ao cliente, garantindo que cada projeto seja entregue com excelência e que a comunicação flua perfeitamente entre a equipe técnica e o cliente.
+                    </p>
+
+                    <!-- Certificações -->
+                    <div class="mt-6">
+                        <h3 class="text-xl font-bold mb-3 gradient-text">Certificações Profissionais</h3>
+                        <div class="flex flex-wrap gap-3 text-xs">
+                            <span class="bg-slate-700 text-slate-200 px-3 py-1.5 rounded-full border border-slate-600">Técnico em Administração</span>
+                            <span class="bg-slate-700 text-slate-200 px-3 py-1.5 rounded-full border border-slate-600">Formação em Designer Instrucional</span>
+                            <span class="bg-slate-700 text-slate-200 px-3 py-1.5 rounded-full border border-slate-600">UX e UI Design</span>
+                            <span class="bg-slate-700 text-slate-200 px-3 py-1.5 rounded-full border border-slate-600">Design Thinking</span>
+                            <span class="bg-slate-700 text-slate-200 px-3 py-1.5 rounded-full border border-slate-600">Gestão de Mídias Sociais</span>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </section>
+
+    <!-- 7. Seção FAQ (Perguntas Frequentes) -->
+    <section id="faq" class="py-16 bg-slate-900">
+        <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
+            <h2 class="text-4xl font-bold text-center mb-10">Perguntas <span class="gradient-text">Frequentes (FAQ)</span></h2>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="rounded-xl border border-slate-700 bg-slate-800 overflow-hidden">
+                    <button class="accordion-header flex justify-between items-center w-full p-5 text-left font-semibold hover:bg-slate-700/50 transition">
+                        <span>O atendimento presencial está disponível em quais regiões?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-slate-400 text-sm">Oferecemos atendimento técnico presencial para o Rio de Janeiro (Capital), Baixada Fluminense e Niterói. Para todas as outras regiões do Brasil, oferecemos consultoria e suporte de TI 100% remoto.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="rounded-xl border border-slate-700 bg-slate-800 overflow-hidden">
+                    <button class="accordion-header flex justify-between items-center w-full p-5 text-left font-semibold hover:bg-slate-700/50 transition">
+                        <span>A RM TECH SOLUTIONS trabalha apenas com automação residencial?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-slate-400 text-sm">Não! Embora a automação seja um dos nossos pilares, também somos especialistas em suporte de TI (manutenção, formatação, redes) e consultoria em Inteligência Artificial e Design, atendendo tanto clientes residenciais quanto empresariais.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="rounded-xl border border-slate-700 bg-slate-800 overflow-hidden">
+                    <button class="accordion-header flex justify-between items-center w-full p-5 text-left font-semibold hover:bg-slate-700/50 transition">
+                        <span>Como posso solicitar um orçamento personalizado?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-slate-400 text-sm">Você pode clicar em qualquer um dos botões 'Quero esse serviço' ou 'Falar no WhatsApp' para ser direcionado ao nosso atendimento. Descreva sua necessidade e montaremos uma proposta sob medida, sem compromisso.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="rounded-xl border border-slate-700 bg-slate-800 overflow-hidden">
+                    <button class="accordion-header flex justify-between items-center w-full p-5 text-left font-semibold hover:bg-slate-700/50 transition">
+                        <span>A RM TECH SOLUTIONS oferece suporte pós-serviço?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-slate-400 text-sm">Sim, nosso compromisso não termina na entrega. Oferecemos um período de garantia e suporte para garantir que a solução implementada funcione perfeitamente e que você esteja totalmente satisfeito.</p>
+                    </div>
+                </div>
+
+                <div class="rounded-xl border border-slate-700 bg-slate-800 overflow-hidden">
+                    <button class="accordion-header flex justify-between items-center w-full p-5 text-left font-semibold hover:bg-slate-700/50 transition">
+                        <span>Vocês atendem em apartamentos?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-slate-400 text-sm">Sim, perfeitamente! A maioria das soluções de automação residencial hoje em dia utiliza tecnologias sem fio (Wi-Fi, Zigbee), que não exigem reformas ou quebra de paredes, sendo ideais para a instalação em apartamentos.
+
+</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Chamada para Ação Final (CTA) -->
+    <section class="py-16 bg-slate-800">
+        <div class="container mx-auto px-4 sm:px-6 text-center">
+            <div class="p-10 rounded-2xl bg-slate-900 border border-indigo-500/50 shadow-2xl shadow-indigo-600/20">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Pronto para <span class="gradient-text">Começar a Transformação?</span></h2>
+                <p class="text-xl text-slate-400 mb-8 max-w-2xl mx-auto">Não perca mais tempo com tecnologias desatualizadas. Fale com nossos especialistas hoje mesmo.</p>
+                <a href="https://wa.me/5521969376246" target="_blank" class="inline-flex items-center bg-pink-600 hover:bg-pink-500 text-white font-bold py-3 px-10 rounded-xl transition duration-300 text-lg shadow-xl shadow-pink-600/50">
+                    <i data-lucide="phone-call" class="w-6 h-6 mr-2"></i> Solicitar Consultoria
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 py-10 border-t border-slate-700">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Coluna 1: Logo e Contato -->
+                <div class="md:col-span-2 lg:col-span-1">
+                    <a href="#hero" class="text-2xl font-extrabold gradient-text">RM TECH SOLUTIONS</a>
+                    <p class="text-sm text-slate-400 mt-2 mb-4">Soluções em tecnologia, inovação e design para transformar sua casa ou negócio.</p>
+                    <div class="space-y-2 text-sm">
+                        <p class="flex items-center text-slate-300">
+                            <i data-lucide="mail" class="w-4 h-4 mr-2 text-indigo-400 flex-shrink-0"></i> rmtechsolutionssuport@gmail.com
+                        </p>
+                        <a href="https://wa.me/5521969376246" target="_blank" class="flex items-center text-slate-300 hover:text-indigo-400 transition">
+                            <i data-lucide="message-circle" class="w-4 h-4 mr-2 text-indigo-400 flex-shrink-0"></i> +55 (21) 96937-6246
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Links Rápidos -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-indigo-400">Navegação</h3>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#servicos" class="hover:text-white transition">Serviços</a></li>
+                        <li><a href="#pacotes" class="hover:text-white transition">Pacotes</a></li>
+                        <li><a href="#diferenciais" class="hover:text-white transition">Diferenciais</a></li>
+                        <li><a href="#sobre" class="hover:text-white transition">A Equipe</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Redes Sociais -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-indigo-400">Siga-nos</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/rmtechsolutionss/" target="_blank" class="text-slate-400 hover:text-pink-500 transition" aria-label="Instagram">
+                            <i data-lucide="instagram" class="w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Coluna 4: Informações Adicionais -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-indigo-400">Jurídico</h3>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#" class="hover:text-white transition">Política de Privacidade</a></li>
+                        <li><a href="#" class="hover:text-white transition">Termos de Serviço</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-10 pt-6 border-t border-slate-700 text-center text-sm text-slate-500">
+                <p>&copy; <span id="current-year"></span> RM Tech Solutions. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript para interatividade -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializa ícones Lucide
+            lucide.createIcons();
+
+            // Define o ano atual no footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // 1. Navbar Sticky Effect
+            const navbar = document.getElementById('navbar');
+            const handleScroll = () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('nav-sticky');
+                } else {
+                    navbar.classList.remove('nav-sticky');
+                }
+            };
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Verifica no carregamento
+
+            // 2. Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                const icon = mobileMenuButton.querySelector('i');
+                if (mobileMenu.classList.contains('hidden')) {
+                    icon.setAttribute('data-lucide', 'menu');
+                } else {
+                    icon.setAttribute('data-lucide', 'x');
+                }
+                lucide.createIcons(); // Re-renderiza o ícone
+            });
+            
+            // Fecha o menu móvel ao clicar em um link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuButton.querySelector('i').setAttribute('data-lucide', 'menu');
+                    lucide.createIcons();
+                });
+            });
+
+
+            // 3. FAQ Accordion Functionality
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    // CORREÇÃO: Após a inicialização do Lucide, o <i> é substituído por <svg>.
+                    // Devemos buscar o <svg> para aplicar a transformação.
+                    const icon = header.querySelector('svg'); 
+                    
+                    // Fecha todos os outros (opcional, para manter um aberto por vez)
+                    accordionHeaders.forEach(otherHeader => {
+                        if (otherHeader !== header) {
+                            otherHeader.nextElementSibling.classList.remove('active');
+                            const otherIcon = otherHeader.querySelector('svg');
+                            if (otherIcon) {
+                                otherIcon.style.transform = 'rotate(0deg)';
+                            }
+                        }
+                    });
+
+                    // Alterna o conteúdo e o ícone do item clicado
+                    content.classList.toggle('active');
+                    if (icon) {
+                        if (content.classList.contains('active')) {
+                            icon.style.transform = 'rotate(180deg)';
+                        } else {
+                            icon.style.transform = 'rotate(0deg)';
+                        }
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>

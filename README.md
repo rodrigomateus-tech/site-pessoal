@@ -47,5 +47,5 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 ## 👨‍💻 Autor
 
 **Rodrigo Mateus**
-* LinkedIn: [[https://www.linkedin.com/in/rodrigo-mateus-ti/](https://www.linkedin.com/in/rodrigo-mateus-ti/)]
+* LinkedIn: [[Rodrigo Mateus TI](https://www.linkedin.com/in/rodrigo-mateus-ti/)]
 * Instagram: [@rmtechsolutionss](https://www.instagram.com/rmtechsolutionss/)
